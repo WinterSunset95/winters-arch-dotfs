@@ -1,0 +1,54 @@
+(defvar showDisk false)
+
+(defwidget diskWidget [diskTotal diskUsed diskFree]
+  (eventbox
+    :onhover "${EWW_CMD} update showDisk=true"
+    :onhoverlost "${EWW_CMD} update showDisk=false"
+    (box
+      :class "roundedBox"
+      (overlay
+        (progress
+          :flipped true
+          :orientation "v"
+          :value {diskUsed}
+          :class "diskProgress ${diskUsed > 90 ? "one" : 
+          diskUsed > 80 ? "two" :
+          diskUsed > 70 ? "three" :
+          diskUsed > 60 ? "four" :
+          diskUsed > 50 ? "five" : "six" }"
+        )
+        (box
+          :halign "end"
+          :valign "end"
+          :class "diskBox"
+          :style "
+            font-size: ${showDisk ? "1.5rem" : "0rem"};
+            min-height: ${showDisk ? "100px" : "30px"};
+            min-width: ${showDisk ? "100px" : "30px"};
+            margin-right: ${showDisk ? "0" : "1rem"};
+            margin-bottom: ${showDisk ? "0" : "0.5rem"};
+          "
+          (stack
+            :selected {showDisk ? 1 : 0}
+            :transition "crossfade"
+            :same-size true
+            :class "diskStack"
+            :halign "center"
+            :valign "center"
+            (box
+              :class "diskIcon"
+              :style "
+                background-image: url('./icons/SVG/floppy-disk.svg');
+              "
+              )
+            (label
+              :halign "center"
+              :valign "center"
+              :text "${diskUsed}"
+            )
+        )
+        )
+      )
+    )
+  )
+)

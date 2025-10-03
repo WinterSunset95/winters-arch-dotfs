@@ -1,0 +1,100 @@
+// battery
+.charging, .charging trough progress {
+	color: aqua;
+    background-color: aqua;
+    border-radius: 30px;
+}
+
+.full, .full trough progress {
+	color: green;
+    background-color: green;
+    border-radius: 30px;
+}
+
+.one, .one trough progress {
+	color: #eb4034;
+    background-color: #eb4034;
+    border-radius: 30px;
+}
+
+.two, .two trough progress {
+	color: #eb8c34;
+    background-color: #eb8c34;
+    border-radius: 30px;
+}
+
+.three, .three trough progress {
+	color: #ebd234;
+    background-color: #ebd234;
+    border-radius: 30px;
+}
+
+.four, .four trough progress {
+	color: #b0eb34;
+    background-color: #b0eb34;
+    border-radius: 30px;
+}
+
+.five, .five trough progress {
+	color: #34eb3d;
+    background-color: #34eb3d;
+    border-radius: 30px;
+}
+
+.six, .six trough progress {
+	color: #34eb9e;
+    background-color: #34eb9e;
+    border-radius: 30px;
+}
+
+.progressBattery {
+  min-width: 100px;
+  min-height: 100px;
+}
+
+.batteryBox {
+  transition: all 0.3s ease-in-out;
+  border-radius: 100px;
+}
+
+.batteryImage {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 10px;
+}
+
+.batteryLabel {
+  color: black;
+  padding: 1rem;
+}
+
+.batteryWidgetMain {
+  min-width: 100px;
+  min-height: 100px;
+  border-radius: 30px;
+}
+
+.myStack {
+  background-color: $text;
+  box-shadow: 0 0 10px $bgprimary;
+  border-radius: 100px;
+  min-width: 30px;
+  min-height: 30px;
+}
+
+.batteryBoxContainer {
+  min-height: 100px;
+  min-width: 100px;
+}
+
+.progressbar trough {
+  background-color: $primary;
+  min-width: 100px;
+  min-height: 100px;
+  border-radius: 30px;
+}
+
+.progressbar trough progress {
+  min-width: 100px;
+}
+

@@ -1,0 +1,84 @@
+(defvar brightnessControls false)
+
+(defpoll currbrightness
+  :interval "1s"
+  "./scripts/brightness.sh get"
+  )
+
+(defwidget brightness []
+  (eventbox
+    (box
+      :class "brightness button icon"
+      :style "background-image: url('./icons/SVG/sun-light.svg')"
+      )
+    )
+  )
+
+(defwidget brightnessControlsWidget []
+  (eventbox
+    :onhover "${EWW_CMD} update brightnessControls=true"
+    :onhoverlost "${EWW_CMD} update brightnessControls=false"
+    (box
+      :class "roundedBox"
+      (overlay
+        (scale
+          :class "brightness_scale"
+          :orientation "v"
+          :width 100
+          :value {currbrightness}
+          :max 100
+          :min 10
+          :flipped true
+          :onchange "./scripts/brightness.sh set {}"
+        )
+        (box
+          :class "brightnessBox"
+          :valign "end"
+          :halign "end"
+          :style "
+            min-width: ${brightnessControls ? "100px" : "30px"};
+            min-height: ${brightnessControls ? "100px" : "30px"};
+            margin-right: ${brightnessControls ? "0" : "1rem"};
+            margin-bottom: ${brightnessControls ? "0" : "0.5rem"};
+            font-size: ${brightnessControls ? "1.5rem" : "0"};
+          "
+          (stack
+            :selected "${brightnessControls ? 1 : 0}"
+            :transition "crossfade"
+            :same-size true
+            :class "brightnessStack"
+            :valign "center"
+            :halign "center"
+            (box
+              :class "brightnessIcon"
+              :style "background-image: url('./icons/SVG/sun.svg');"
+            )
+            (label
+              :text "${currbrightness}"
+            )
+          )
+        )
+      )
+    )
+  )
+)
+
+(defwindow brightnessWindow
+  :monitor 0
+  :focusable "false"
+  :geometry (geometry
+              :x "5px"
+              :y "1%"
+              :anchor "bottom left"
+              )
+  (box
+    :vexpand false
+    :hexpand false
+    (revealer
+      :transition "slideright"
+      :duration "350ms"
+      :reveal false
+      (brightnessControlsWidget)
+      )
+    )
+  )

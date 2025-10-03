@@ -1,0 +1,25 @@
+(defpoll currTime :interval "60s"
+	"date '+%I:%M'"
+)
+
+(defpoll ampm :interval "60s"
+	"date '+%p'"
+)
+
+(defwidget time []
+	(box :class "timeBox"
+		:orientation "h"
+		:halign "center"
+        :space-evenly false
+        :spacing 10
+		(label :text {currTime})
+        (label
+          :valign "end"
+          :style "
+            font-size: 2rem;
+          "
+          :text {ampm}
+        )
+	)
+)
+

@@ -1,0 +1,89 @@
+(defvar show_controls false)
+(defvar show_audio false)
+(deflisten songStatus :initial "Paused"
+    "./scripts/audio.sh status"
+)
+(deflisten currSong :initial ""
+	"./scripts/audio.sh title"
+)
+(deflisten artist :initial ""
+	"./scripts/audio.sh artist"
+)
+(defpoll songUrl :interval "1s"
+	"./scripts/audio.sh img"
+)
+
+(defwidget audio []
+	(eventbox
+		:onhover "${EWW_CMD} update show_audio=true"
+		:onhoverlost "${EWW_CMD} update show_audio=false"
+		:onclick "${EWW_CMD} update show_audio=true"
+		(box
+			:class "audio icon"
+            :style "background-image: url('./icons/SVG/headphones.svg')"
+		)
+	)
+)
+
+(defwidget audioControls []
+  (eventbox
+    :onhover "${EWW_CMD} update show_audio=true"
+    :onhoverlost "${EWW_CMD} update show_audio=false"
+    (box
+      :class "audioWindowBox"
+      :orientation "h"
+      :halign "center"
+      :space-evenly false
+      (box
+        :class "audioImg"
+        (image
+          :path "${songUrl}"
+          :image-width 100
+          :image-height 100
+          :class "audioImg"
+          )
+        )
+      (box
+        :orientation "v"
+        :valign "center"
+        :class "audioControls"
+        :width 100
+        (label :text {artist})
+        (box
+          :class "audio_controls"
+          :orientation "h"
+          :spacing 10
+          (button 
+            :class "audio_button"
+            :onclick "playerctl previous" "󰒮")
+          (button 
+            :class "audio_button"
+            :onclick "playerctl play-pause" "󰐎")
+          (button 
+            :class "audio_button"
+            :onclick "playerctl next" "󰒭")
+          )
+        )
+      )
+    )
+  )
+
+(defwindow audioWindow
+	:monitor 0
+	:focusable "false"
+	:geometry (geometry
+        :x "5"
+		:anchor "left center"
+	)
+	(box
+		:vexpand false
+		:hexpand false
+		(revealer
+			:transition "slideright"
+			:duration "350ms"
+			:reveal show_audio
+			(audioControls)
+		)
+	)
+)
+

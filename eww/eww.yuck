@@ -1,0 +1,131 @@
+(include "./modules/battery.yuck")
+(include "./modules/internet.yuck")
+(include "./modules/workspaces.yuck")
+(include "./modules/brightness.yuck")
+(include "./modules/volume.yuck")
+(include "./modules/audio.yuck")
+(include "./modules/helpers.yuck")
+(include "./modules/time.yuck")
+(include "./modules/date.yuck")
+(include "./modules/disk.yuck")
+(include "./modules/ram.yuck")
+(defvar screen_recording false)
+
+(defwidget bar []
+	(centerbox
+		:class "container"
+		:orientation "v"
+		(leftbar)
+		(centerbar)
+		(helpers)
+	)
+)
+
+(defwidget screenRecording []
+	(box
+		:class "screenRecording"
+		:orientation "h"
+		:halign "center"
+		:width 20
+		:space-evenly false
+		(button :class "button recorder" :onclick "${EWW_CMD} update screen_recording=false && killall -r wf-recorder" "󰻃")
+	)
+)
+
+(defwidget tray []
+	(box
+		:class "tray"
+		:orientation "h"
+		:spacing 10
+		:space-evenly false
+		:vexpand false
+		:hexpand false
+		(label :text "|")
+		(revealer
+			:transition "slideleft"
+			:duration "350ms"
+			:reveal screen_recording
+			(screenRecording)
+		)
+	)
+)
+
+(defwidget centerbar []
+	(box
+		:class "centerbar"
+		:orientation "h"
+		:halign "center"
+		:spacing 10
+		(audio)
+	)
+)
+
+(defwidget ram []
+	(box :class "ram"
+		:orientation "h"
+		:halign "center"
+		:spacing 10
+		:tooltip "RAM: ${round(EWW_RAM.used_mem_perc, 0)}%"
+		(circular-progress
+			:class "ram_progress"
+			:width 20
+			:value {EWW_RAM.used_mem_perc}
+			:thickness 3
+		)
+	)
+)
+
+(defwidget cpu []
+	(box
+		:class "ram"
+		:orientation "h"
+		:halign "center"
+		:spacing 10
+		:tooltip "CPU: ${round(EWW_CPU.avg, 0)}%"
+		(circular-progress
+			:class "ram_progress"
+			:width 20
+			:value {EWW_CPU.avg}
+			:thickness 3
+		)
+	)
+)
+
+(defwidget leftbar []
+	(box
+		:class "leftbar"
+		:orientation "v"
+		:valign "start"
+        :vexpand false
+		:space-evenly false
+		:spacing 50
+		(workspaces)
+	)
+)
+
+(defwindow barx11
+  :geometry (geometry
+                :x "0px"
+                :y "0px"
+                :width "20px"
+                :height "100%"
+                :anchor "right center")
+  :stacking "fg"
+  :reserve (struts :distance "50px" :side "right")
+  :windowtype "dock"
+  :wm-ignore false
+  (bar)
+)
+
+(defwindow barwayland
+  :monitor 0
+  :stacking "fg"
+  :exclusive "true"
+  :geometry (geometry
+				:width "20"
+				:height "100%"
+				:anchor "left center"
+  )
+  (bar)
+)
+

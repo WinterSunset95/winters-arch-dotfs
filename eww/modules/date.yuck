@@ -1,0 +1,89 @@
+(defpoll today :interval "60s"
+  "date +%d"
+)
+
+(defpoll todayName :interval "60s"
+  "date +%a"
+)
+
+(defpoll dayIndex :interval "60s"
+  "date +%w"
+)
+
+(defpoll month :interval "60s"
+  "date +%m"
+)
+
+(defwidget calWidget []
+  (box
+    :orientation "v"
+    :class "calContainer"
+    :valign "fill"
+    :halign "fill"
+    (box
+      :class "calWeeks"
+      :width 100
+      :orientation "h"
+      :space-evenly true
+      :valign "fill"
+      :halign "fill"
+      (label
+        :text "S"
+      )
+      (label
+        :text "M"
+      )
+      (label
+        :text "T"
+      )
+      (label
+        :text "W"
+      )
+      (label
+        :text "T"
+      )
+      (label
+        :text "F"
+      )
+      (label
+        :text "S"
+      )
+    )
+    (box
+      :class "calDays"
+      :width 100
+      :orientation "h"
+      :space-evenly true
+      :valign "fill"
+      :halign "fill"
+      (label
+        :class "${dayIndex == 0 ? "todayActive" : ""}"
+        :text "${today - dayIndex + 0}"
+      )
+      (label
+        :class "${dayIndex == 1 ? "todayActive" : ""}"
+        :text "${today - dayIndex + 1}"
+      )
+      (label
+        :class "${dayIndex == 2 ? "todayActive" : ""}"
+        :text "${today - dayIndex + 2}"
+      )
+      (label
+        :class "${dayIndex == 3 ? "todayActive" : ""}"
+        :text "${today - dayIndex + 3}"
+      )
+      (label
+        :class "${dayIndex == 4 ? "todayActive" : ""}"
+        :text "${today - dayIndex + 4}"
+      )
+      (label
+        :class "${dayIndex == 5 ? "todayActive" : ""}"
+        :text "${today - dayIndex + 5}"
+      )
+      (label
+        :class "${dayIndex == 6 ? "todayActive" : ""}"
+        :text "${today - dayIndex + 6}"
+      )
+    )
+  )
+)

@@ -1,0 +1,17 @@
+[general]
+import = ["~/.config/alacritty/themes/themes/xterm.toml"]
+
+[font]
+normal = { family = "ComicShannsMono Nerd Font", style = "regular" }
+bold = { family = "ComicShannsMono Nerd Font", style = "bold" }
+italic = { family = "Cousine Nerd Font", style = "italic" }
+bold_italic = { family = "Cousine Nerd Font", style = "bolditalic" }
+offset = { x = 2, y = 0 }
+size = 9
+
+[scrolling]
+history = 100000
+
+[window]
+opacity = 0.8
+blur = true

@@ -1,0 +1,95 @@
+(defvar showPercentage false)
+
+(defwidget battery []
+	(box :class "battery "
+		:orientation "v"
+		:spacing 10
+		:valign "center"
+		:tooltip "Battery: ${EWW_BATTERY.BAT1.capacity}%"
+		(circular-progress
+			:class "${EWW_BATTERY.BAT1.status == "Charging" ? "charging"
+				: EWW_BATTERY.BAT1.status == "Full" ? "full"
+					: EWW_BATTERY.BAT1.capacity > 95 ? "six"
+					: EWW_BATTERY.BAT1.capacity > 85 ? "five"
+					: EWW_BATTERY.BAT1.capacity > 75 ? "four"
+					: EWW_BATTERY.BAT1.capacity > 65 ? "three"
+					: EWW_BATTERY.BAT1.capacity > 55 ? "two"
+					: "one"}"
+			:height 30
+			:value "${EWW_BATTERY.BAT1.capacity}"
+			:thickness 3
+		)
+	)
+)
+
+(defwidget test []
+      (circular-progress
+        :class "${EWW_BATTERY.BAT1.status == "Charging" ? "charging"
+        : EWW_BATTERY.BAT1.status == "Full" ? "full"
+        : EWW_BATTERY.BAT1.capacity > 95 ? "six"
+        : EWW_BATTERY.BAT1.capacity > 85 ? "five"
+        : EWW_BATTERY.BAT1.capacity > 75 ? "four"
+        : EWW_BATTERY.BAT1.capacity > 65 ? "three"
+        : EWW_BATTERY.BAT1.capacity > 55 ? "two"
+        : "one"} progressBattery"
+        :value "${EWW_BATTERY.BAT1.capacity}"
+        :width 100
+        :height 100
+        :thickness 5
+      )
+)
+
+(defwidget batteryWidget []
+  (eventbox
+    :onhover "${EWW_CMD} update showPercentage=true"
+    :onhoverlost "${EWW_CMD} update showPercentage=false"
+    (box
+      :class "roundedBox"
+      (overlay
+        (progress
+          :flipped true
+          :orientation "v"
+          :value "${EWW_BATTERY.BAT1.capacity}"
+          :class "progressbar ${EWW_BATTERY.BAT1.status == "Charging" ? "charging"
+          : EWW_BATTERY.BAT1.status == "Full" ? "full"
+          : EWW_BATTERY.BAT1.capacity > 95 ? "six"
+          : EWW_BATTERY.BAT1.capacity > 85 ? "five"
+          : EWW_BATTERY.BAT1.capacity > 75 ? "four"
+          : EWW_BATTERY.BAT1.capacity > 65 ? "three"
+          : EWW_BATTERY.BAT1.capacity > 55 ? "two"
+          : "one"}"
+        )
+        (box
+          :valign "end"
+          :halign "end"
+          :class "batteryBox"
+          :style "
+            font-size: ${showPercentage ? "1.25rem" : "0rem"};
+            min-width: ${showPercentage ? "100px" : "30px"};
+            min-height: ${showPercentage ? "100px" : "30px"};
+            margin-right: ${showPercentage ? "0" : "1rem"};
+            margin-bottom: ${showPercentage ? "0" : "0.5rem"};
+          "
+          (stack
+            :transition "crossfade"
+            :same-size true
+            :selected "${showPercentage ? 1 : 0}"
+            :class "myStack"
+            :valign "center"
+            :halign "center"
+            (box
+              :class "batteryImage"
+              :style "background-image: url('./icons/SVG/power.svg');"
+            )
+            (label 
+              :class "batteryLabel"
+              :valign "center"
+              :halign "center"
+              :text "${EWW_BATTERY.BAT1.capacity}"
+            )
+          )
+        )
+      )
+    )
+  )
+)

@@ -1,0 +1,86 @@
+$bg: #152544;
+$bgprimary: #1f2335;
+$bgalpha: rgb(21,37,68,0.5);
+$fg: #bb6e48;
+$primary: #37527b;
+$secondary: #1b314f;
+$highlight: #372628;
+$text: rgb(200,200,200);
+
+@import "modules/audio.scss";
+@import "modules/internet.scss";
+@import "modules/volume.scss";
+@import "modules/battery.scss";
+@import "modules/workspaces.scss";
+@import "modules/brightness.scss";
+@import "modules/helpers.scss";
+@import "modules/time.scss";
+@import "modules/date.scss";
+@import "modules/disk.scss";
+@import "modules/ram.scss";
+
+* {
+  all: unset; //Unsets everything so you can style everything from scratch
+  color: $text;
+  font-family: "Montserrat", Georgia, 'Times New Roman', Times, serif;
+  font-weight: 500;
+}
+
+//Global Styles
+.container {
+  background-color: $bgprimary;
+  margin: 0.5rem;
+  margin-right: 0;
+  padding: 0.5rem;
+}
+
+.centerbar, .leftbar, .helpers {
+	background-color: $primary;
+	border-radius: 0.5rem;
+    padding: 0.5rem;
+}
+
+.leftbar {
+  padding: 0;
+}
+
+.activeWindow {
+	padding-right: 1rem;
+}
+
+.helpers * {
+    font-size: 1.5rem;
+}
+
+.button {
+	font-size: 1rem;
+}
+
+scale trough {
+  all: unset;
+  background-color: $primary;
+  min-height: 100px;
+  min-width: 100px;
+}
+
+.icon {
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    min-width: 20px;
+    min-height: 20px;
+}
+
+// Ram
+.ram_progress {
+	color: #D35D6E;
+}
+
+// Recorder
+.recorder {
+	color: #D35D6E;
+}
+
+.recorder:hover {
+	color: green;
+}

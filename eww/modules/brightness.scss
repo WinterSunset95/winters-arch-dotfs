@@ -1,0 +1,31 @@
+.brightness_scale trough {
+  border-radius: 30px;
+}
+
+.brightness_scale trough highlight {
+	background-color: $fg;
+    border-radius: 30px;
+}
+
+.brightnessBox {
+  transition: all 0.3s ease-in-out;
+}
+
+.brightnessBox label {
+  color: black;
+  padding: 1rem;
+}
+
+.brightnessStack {
+  min-width: 30px;
+  min-height: 30px;
+  background-color: $text;
+  border-radius: 30px;
+  box-shadow: 0 0 5px $bgprimary;
+}
+
+.brightnessIcon {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 10px;
+}

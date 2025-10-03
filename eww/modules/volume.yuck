@@ -1,0 +1,83 @@
+(defvar volControls false)
+
+(defpoll currvol
+  :interval "3s"
+  "./scripts/getvol"
+)
+
+(defwidget volume []
+  (eventbox
+    (box
+      :class "volume button icon"
+      :style "background-image: url('./icons/SVG/volume-medium-light.svg')"
+    )
+  )
+)
+
+(defwidget volumeControls []
+  (eventbox
+    :onhover "${EWW_CMD} update volControls=true"
+    :onhoverlost "${EWW_CMD} update volControls=false"
+    (box
+      :class "roundedBox"
+      (overlay
+        (scale
+          :class "volume_scale"
+          :orientation "v"
+          :value currvol
+          :max 100
+          :min 0
+          :flipped true
+          :onchange "amixer -D pulse sset Master {}%"
+        )
+        (box
+          :halign "end"
+          :valign "end"
+          :class "volumeIconHolder"
+          :style "
+            font-size: ${volControls ? "1.5rem" : "0"};
+            min-width: ${volControls ? "100px": "30px"};
+            min-height: ${volControls ? "100px": "30px"};
+            margin-right: ${volControls ? "0" : "1rem"};
+            margin-bottom: ${volControls ? "0" : "0.5rem"};
+          "
+          (stack
+            :selected "${volControls ? 1 : 0}"
+            :transition "crossfade"
+            :same-size true
+            :class "volumeIconBox"
+            :valign "center"
+            :halign "center"
+            (box
+              :class "volumeIcon"
+              :style "background-image: url('./icons/SVG/volume-medium.svg');"
+            )
+            (label
+              :text "${currvol}"
+            )
+          )
+        )
+      )
+    )
+  )
+)
+
+(defwindow volumeWindow
+  :monitor 0
+  :focusable "false"
+  :geometry (geometry
+              :x "5px"
+              :y "3%"
+              :anchor "bottom left"
+              )
+  (box
+    :vexpand false
+    :hexpand false
+    (revealer
+      :transition "slideright"
+      :duration "350ms"
+      :reveal false
+      (volumeControls)
+      )
+    )
+  )

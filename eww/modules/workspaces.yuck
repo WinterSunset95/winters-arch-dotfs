@@ -1,0 +1,16 @@
+(deflisten activeWindow :initial "hello"
+	"./scripts/window.py"
+)
+
+(deflisten workspacesList :initial ""
+	"./scripts/workspaces.py"
+)
+
+(defwidget workspaces []
+	(box
+		:orientation "v"
+		:valign "center"
+		(literal :content "${workspacesList}")
+	)
+)
+

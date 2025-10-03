@@ -1,0 +1,11 @@
+# Unset everything
+scroll_right
+scroll_left
+scroll_up
+scroll_down
+
+# Custom maps
+scroll_up k
+scroll_down j
+scroll_left h
+scroll_right l

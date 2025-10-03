@@ -1,0 +1,20 @@
+# ~/.config/mako/config
+
+# --- Main Configuration ---
+font=Cousine Nerd Font Mono 10
+default-timeout=5000
+anchor=top-right
+
+# --- Style Section ---
+# These options apply to all notifications
+background-color=#1e1e2eAA
+text-color=#cdd6f4
+border-color=#89b4fa88
+border-size=2
+border-radius=8
+padding=10
+margin=5
+width=300
+
+# Format for the text. %s is summary (title), %b is body.
+format=%s\n%b

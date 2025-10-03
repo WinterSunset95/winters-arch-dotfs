@@ -1,0 +1,14 @@
+.calWeeks label, .calDays label {
+  font-size: 1.2rem;
+  padding: 0.75rem;
+}
+
+.calWeeks label {
+  color: $fg;
+}
+
+.todayActive {
+  border-radius: 10px;
+  color: $highlight;
+  background-color: $fg;
+}

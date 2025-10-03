@@ -1,0 +1,33 @@
+.volumeIconHolder {
+  transition: all 0.3s ease-in-out;
+}
+
+.volumeIconBox {
+  box-shadow: 0 0 5px $bgprimary;
+  background-color: $text;
+  border-radius: 100rem;
+}
+
+.volumeIcon {
+  background-size: 10px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.volumeIconBox label {
+  padding: 1rem;
+  color: black;
+}
+
+.volLabel, .brightnessLabel, .inetLabel {
+    font-size: 4rem;
+}
+
+.volume_scale trough {
+  border-radius: 30px;
+}
+
+.volume_scale trough highlight {
+	background-color: $fg;
+    border-radius: 30px;
+}

@@ -1,0 +1,117 @@
+{
+  "IcoMoonType": "selection",
+  "icons": [
+    {
+      "icon": {
+        "paths": [
+          "M896 0h-896v1024h1024v-896l-128-128zM512 128h128v256h-128v-256zM896 896h-768v-768h64v320h576v-320h74.978l53.022 53.018v714.982z"
+        ],
+        "tags": [
+          "floppy-disk",
+          "save"
+        ],
+        "defaultCode": 59746,
+        "grid": 16,
+        "attrs": []
+      },
+      "attrs": [],
+      "properties": {
+        "ligatures": "floppy-disk, save2",
+        "name": "floppy-disk",
+        "order": 21,
+        "id": 99,
+        "prevSize": 32
+      },
+      "setIdx": 1,
+      "setId": 1,
+      "iconIdx": 98
+    },
+    {
+      "icon": {
+        "paths": [
+          "M0 832h1024v128h-1024zM128 576h128v192h-128zM320 320h128v448h-128zM512 512h128v256h-128zM704 128h128v640h-128z"
+        ],
+        "tags": [
+          "stats-bars",
+          "stats",
+          "statistics",
+          "chart"
+        ],
+        "defaultCode": 59804,
+        "grid": 16,
+        "attrs": []
+      },
+      "attrs": [],
+      "properties": {
+        "ligatures": "stats-bars, stats3",
+        "name": "stats-bars",
+        "order": 22,
+        "id": 157,
+        "prevSize": 32
+      },
+      "setIdx": 1,
+      "setId": 1,
+      "iconIdx": 156
+    },
+    {
+      "icon": {
+        "paths": [
+          "M384 0l-384 512h384l-256 512 896-640h-512l384-384z"
+        ],
+        "tags": [
+          "power",
+          "lightning",
+          "bolt",
+          "electricity"
+        ],
+        "defaultCode": 59829,
+        "grid": 16,
+        "attrs": []
+      },
+      "attrs": [],
+      "properties": {
+        "ligatures": "power, lightning",
+        "name": "power",
+        "order": 20,
+        "id": 182,
+        "prevSize": 32
+      },
+      "setIdx": 1,
+      "setId": 1,
+      "iconIdx": 181
+    }
+  ],
+  "height": 1024,
+  "preferences": {
+    "showGlyphs": true,
+    "showQuickUse": true,
+    "showQuickUse2": true,
+    "showSVGs": true,
+    "fontPref": {
+      "prefix": "icon-",
+      "metadata": {
+        "fontFamily": "icomoon"
+      },
+      "metrics": {
+        "emSize": 1024,
+        "baseline": 6.25,
+        "whitespace": 50
+      },
+      "embed": false
+    },
+    "imagePref": {
+      "prefix": "icon-",
+      "png": true,
+      "useClassSelector": true,
+      "color": 0,
+      "bgColor": 16777215,
+      "classSelector": ".icon",
+      "name": "icomoon",
+      "height": 32
+    },
+    "historySize": 50,
+    "showCodes": true,
+    "gridSize": 16,
+    "showGrid": false
+  }
+}
