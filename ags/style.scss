@@ -2,21 +2,39 @@
 $fg-color: #{"@theme_fg_color"};
 $bg-color: #{"@theme_bg_color"};
 
-window#bar {
-  background: transparent;
+.bar {
+  background: rgba(0, 0, 0, 0.6);
   color: $fg-color;
   font-weight: bold;
+}
 
-  > box {
-    background: $bg-color;
-    border-radius: 10px;
-    margin: 8px;
-  }
+.test {
+  min-width: 100px;
+}
+
+.centerbox {
+  background: transparent;
+  border-radius: 10px;
+  padding: 5px;
 
   button {
-    border-radius: 8px;
+    border-radius: 5px;
     margin: 2px;
     min-height: 0;
-    padding: 4px 8px;
+    padding: 5px 8px;
+  }
+
+  .workspace-button {
+    border-radius: 0;
+    margin: 0;
+    padding: 5px 10px;
+    border: 2px solid $fg-color;
+  }
+
+  .workspace-focused {
+    background: $fg-color;
+    color: $bg-color;
+    padding: 5px 20px;
   }
 }
+

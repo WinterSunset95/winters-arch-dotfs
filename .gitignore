@@ -9,6 +9,8 @@
 *.log.*
 *.sig
 
+OkPanel/
+
 pkg/
 src/
 guake/session.json

@@ -1,7 +1,9 @@
 {
   "dependencies": {
     "ags": "*",
-    "gnim": "*"
+    "gnim": "*",
+    "lucide-react": "^0.544.0",
+    "lucide-static": "^0.544.0"
   },
   "prettier": {
     "semi": false,

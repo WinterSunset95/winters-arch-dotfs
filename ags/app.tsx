@@ -1,7 +1,8 @@
 import { createBinding, For, This } from "ags"
 import app from "ags/gtk4/app"
 import style from "./style.scss"
-import Bar from "./Bar"
+import Bar from "./widgets/bar/Bar"
+import Menu from "./widgets/menu/Menu"
 
 app.start({
   css: style,
@@ -10,7 +11,7 @@ app.start({
   // to potentially mess something up when it is changed.
   // Note: `* { all:unset }` in css is not recommended.
   gtkTheme: "Adwaita-dark",
-  main() {
+  main(...args: Array<string>) {
     const monitors = createBinding(app, "monitors")
 
     return (
@@ -18,9 +19,13 @@ app.start({
         {(monitor) => (
           <This this={app}>
             <Bar gdkmonitor={monitor} />
+            <Menu gdkmonitor={monitor} />
           </This>
         )}
       </For>
     )
   },
+  requestHandler(request: string[], res: (response: any) => void) {
+    print(request);
+  }
 })
