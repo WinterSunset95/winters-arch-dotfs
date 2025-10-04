@@ -3,6 +3,7 @@ import app from "ags/gtk4/app"
 import style from "./style.scss"
 import Bar from "./widgets/bar/Bar"
 import Menu from "./widgets/menu/Menu"
+import RightBar from "./widgets/right/RightBar"
 
 app.start({
   css: style,
@@ -20,6 +21,7 @@ app.start({
           <This this={app}>
             <Bar gdkmonitor={monitor} />
             <Menu gdkmonitor={monitor} />
+            <RightBar gdkmonitor={monitor} />
           </This>
         )}
       </For>
