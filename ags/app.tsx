@@ -4,6 +4,7 @@ import style from "./style.scss"
 import Bar from "./widgets/bar/Bar"
 import Menu from "./widgets/menu/Menu"
 import RightBar from "./widgets/right/RightBar"
+import AppSelector from "./widgets/apps/AppSelector"
 
 app.start({
   css: style,
@@ -21,6 +22,7 @@ app.start({
           <This this={app}>
             <Bar gdkmonitor={monitor} />
             <Menu gdkmonitor={monitor} />
+            <AppSelector gdkmonitor={monitor} />
             <RightBar gdkmonitor={monitor} />
           </This>
         )}

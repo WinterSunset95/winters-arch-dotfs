@@ -6,7 +6,7 @@ import { For, With, createBinding, createComputed, createState, onCleanup } from
 import AstalBattery from "gi://AstalBattery?version=0.1"
 import { Gtk } from "ags/gtk4";
 
-export default function Menu({ gdkmonitor }: { gdkmonitor: Gdk.Monitor }) {
+export default function AppSelector({ gdkmonitor }: { gdkmonitor: Gdk.Monitor }) {
   let win: Astal.Window
   const { LEFT, TOP, BOTTOM, RIGHT } = Astal.WindowAnchor
   const [visible, setVisible] = createState(false)
@@ -22,7 +22,7 @@ export default function Menu({ gdkmonitor }: { gdkmonitor: Gdk.Monitor }) {
 
   return (
     <window
-      name={`menu-section`}
+      name={`app-selector`}
       $={(self) => {
         // Object.assign(self, { show, hide })
         return (win = self)
@@ -30,17 +30,11 @@ export default function Menu({ gdkmonitor }: { gdkmonitor: Gdk.Monitor }) {
       namespace="my-bar"
       gdkmonitor={gdkmonitor}
       exclusivity={Astal.Exclusivity.EXCLUSIVE}
-      anchor={TOP | LEFT | BOTTOM | RIGHT}
+      anchor={TOP | LEFT | BOTTOM}
       application={app}
-      class={"menu"}
+      class={"bar"}
     >
-      <Adw.Clamp
-        maximum_size={500}
-        heightRequest={500}
-      >
-        <box class={"test"}>Hello there</box>
-      </Adw.Clamp>
-
+      <box class={"test"}>Hello there</box>
     </window>
   )
 }

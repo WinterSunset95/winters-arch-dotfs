@@ -3,11 +3,12 @@ import app from "ags/gtk4/app";
 import Astal from "gi://Astal?version=4.0";
 import Gdk from "gi://Gdk?version=4.0";
 import AstalCava from "gi://AstalCava?version=0.1";
-import { createBinding, createComputed, onCleanup } from "gnim";
+import { createBinding, createComputed, onCleanup, With } from "gnim";
 import Cairo from "gi://cairo"
 import { timeout } from "ags/time";
 import VerticalLabel from "../../common/VerticalLabel";
 import { hexToRgba } from "../../lib/utils/strings";
+import AstalMpris from "gi://AstalMpris?version=0.1";
 
 
 function getCoordinate(
@@ -60,13 +61,79 @@ function setBars(cava: AstalCava.Cava, length: number) {
     cava.bars = Math.min(200, length / 10)
 }
 
+function Spotify() {
+  let flipStart = true;
+  const spotify = AstalMpris.Player.new("spotify")
+  const title = createBinding(spotify, "title")((p) => p.length >= 20 ? p.slice(0, 18) + "..." : p)
+  const artist = createBinding(spotify, "artist")((p) => p.length >= 20 ? p.slice(0, 20) + "..." : p)
+  const playbackStatus = createBinding(spotify, "playbackStatus")
+  const watchlist = createComputed((get) => ({
+    artist: get(artist),
+    title: get(title),
+    playbackStatus: get(playbackStatus),
+  }))
+  return (
+    <With value={watchlist}>
+      {(watchlist) => (
+        <box
+            orientation={Gtk.Orientation.VERTICAL}
+            marginStart={5}
+            marginEnd={5}
+        >
+              <box 
+                hexpand={true}
+                halign={Gtk.Align.CENTER}
+                orientation={Gtk.Orientation.HORIZONTAL}
+                heightRequest={200}
+              >
+                <VerticalLabel
+                  text={watchlist.artist}
+                  fontSize={10}
+                  flipped={flipStart}
+                  bold={false}
+                  alignment={Gtk.Align.CENTER}
+                  font={"monospace"}
+                  foregroundColor={createComputed(() => "#ffffff")}
+                />
+                <VerticalLabel
+                  text={watchlist.title}
+                  fontSize={15}
+                  flipped={flipStart}
+                  bold={true}
+                  alignment={Gtk.Align.CENTER}
+                  font={"monospace"}
+                  foregroundColor={createComputed(() => "#ffffff")}
+                />
+              </box>
+              <box
+                valign={Gtk.Align.CENTER}
+                orientation={Gtk.Orientation.VERTICAL}
+                spacing={5}
+                marginTop={30}
+                marginBottom={30}
+              >
+                <button class={"player-button"} onClicked={() => spotify.next()}>
+                  <label label={"󰒭"} />
+                </button>
+                <button class={"player-button"} onClicked={() => spotify.play_pause()}>
+                  <image iconName={`${watchlist.playbackStatus ? "media-playback-start-symbolic" : "media-playback-pause-symbolic"}`}/>
+                </button>
+                <button class={"player-button"} onClicked={() => spotify.previous()}>
+                  <label label={"󰒮"} />
+                </button>
+              </box>
+        </box>
+      )}
+    </With>
+  )
+}
+
 export default function RightBar({ gdkmonitor }: { gdkmonitor: Gdk.Monitor }) {
   let vertical = true;
   let intensity = 2;
-  let length = 200;
-  let size = 20;
+  let length = 100;
+  let size = 40;
   let [r, g, b, a] = [1, 1, 1, 1];
-  let flipStart = true;
   let expand = true;
 
   const { TOP, LEFT, RIGHT, BOTTOM } = Astal.WindowAnchor;
@@ -169,42 +236,20 @@ export default function RightBar({ gdkmonitor }: { gdkmonitor: Gdk.Monitor }) {
       exclusivity={Astal.Exclusivity.EXCLUSIVE}
       anchor={TOP | BOTTOM | RIGHT}
       application={app}
-      class={"bar"}
+      class={"bar right"}
     >
       <box $type="start" orientation={Gtk.Orientation.VERTICAL}>
         <box
-          // marginTop={10}
-          // marginBottom={10}
-          // marginStart={10}
-          // marginEnd={10}
+          marginTop={50}
+          marginBottom={50}
+          marginStart={0}
+          marginEnd={0}
           vexpand={true}
           hexpand={true}
-          widthRequest={30}
         >
           {drawing}
         </box>
-        <box orientation={Gtk.Orientation.HORIZONTAL}>
-          <VerticalLabel
-            text={"Hello"}
-            fontSize={10}
-            flipped={flipStart}
-            bold={false}
-            alignment={Gtk.Align.START}
-            minimumHeight={0}
-            font={"monospace"}
-            foregroundColor={createComputed(() => "#ffffff")}
-          />
-          <VerticalLabel
-            text={"there"}
-            fontSize={10}
-            flipped={flipStart}
-            bold={false}
-            alignment={Gtk.Align.START}
-            minimumHeight={0}
-            font={"monospace"}
-            foregroundColor={createComputed(() => "#ffffff")}
-          />
-        </box>
+        <Spotify />
       </box>
     </window>
   );

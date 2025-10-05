@@ -17,7 +17,7 @@ import { execAsync } from "ags/process"
 import { Box } from "lucide-react"
 
 import Workspaces from "./items/Workspaces"
-import { toggleMenu } from "../menu/Menu"
+import RightUtilities from "./items/RightUtilities"
 
 function Mpris() {
   const mpris = AstalMpris.get_default()
@@ -256,12 +256,12 @@ export default function Bar({ gdkmonitor }: { gdkmonitor: Gdk.Monitor }) {
       exclusivity={Astal.Exclusivity.EXCLUSIVE}
       anchor={TOP | LEFT | RIGHT}
       application={app}
-      class={"bar"}
+      class={"bar top"}
     >
       <centerbox class={"centerbox"}>
         <box $type="start">
           <button onClicked={() => {
-            let win = app.get_window('menu-section')
+            let win = app.get_window('app-selector')
             if (!win) {
               print("Window not found")
               return
@@ -273,7 +273,7 @@ export default function Bar({ gdkmonitor }: { gdkmonitor: Gdk.Monitor }) {
               win.show()
             }
           }}>
-            <label label={"Menu"} />
+            <label label={"󰣇"} />
           </button>
           <Clock />
           <Mpris />
@@ -282,10 +282,7 @@ export default function Bar({ gdkmonitor }: { gdkmonitor: Gdk.Monitor }) {
           <Workspaces />
         </box>
         <box $type="end">
-          {/*<Tray /> */}
-          <Wireless />
-          <AudioOutput />
-          <Battery />
+          <RightUtilities />
         </box>
       </centerbox>
     </window>
