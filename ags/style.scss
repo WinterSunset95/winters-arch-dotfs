@@ -32,9 +32,16 @@ $bg-color: #{"@theme_bg_color"};
   font-size: 25px;
 }
 
-.menu {
+.nobg {
   background: rgba(10, 0, 0, 0);
   color: $fg-color;
+}
+
+.menu-box {
+  padding: 5px;
+  border-radius: 10px;
+  background: rgba(100, 100, 100, 0.8);
+  color: $fg-color
 }
 
 .centerbox {

@@ -34,7 +34,9 @@ export default function AppSelector({ gdkmonitor }: { gdkmonitor: Gdk.Monitor })
       application={app}
       class={"bar"}
     >
-      <box class={"test"}>Hello there</box>
+      <revealer>
+        <box class={"test"}>Hello there</box>
+      </revealer>
     </window>
   )
 }

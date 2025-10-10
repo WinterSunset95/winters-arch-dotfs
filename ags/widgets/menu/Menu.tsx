@@ -5,6 +5,8 @@ import Adw from "gi://Adw?version=1";
 import { For, With, createBinding, createComputed, createState, onCleanup } from "ags"
 import AstalBattery from "gi://AstalBattery?version=0.1"
 import { Gtk } from "ags/gtk4";
+import AstalWp from "gi://AstalWp?version=0.1";
+import Slider, { SliderProps } from "./components/Slider";
 
 export default function Menu({ gdkmonitor }: { gdkmonitor: Gdk.Monitor }) {
   let win: Astal.Window
@@ -13,6 +15,22 @@ export default function Menu({ gdkmonitor }: { gdkmonitor: Gdk.Monitor }) {
   const [reveal, setReveal] = createState(false)
   const [width, setWidth] = createState(0)
 
+  // For audio controls
+  const wireplumber = AstalWp.get_default();
+  const volume = createBinding(wireplumber.defaultSpeaker, "volume")
+  const volumeIcon = createBinding(wireplumber.defaultSpeaker, "volumeIcon")
+
+  function show() {
+    setVisible(true)
+    setReveal(true)
+    print("Show Clicked")
+  }
+
+  function hide() {
+    setReveal(false)
+    print("Hide Clicked")
+  }
+
   onCleanup(() => {
     // Root components (windows) are not automatically destroyed.
     // When the monitor is disconnected from the system, this callback
@@ -20,27 +38,58 @@ export default function Menu({ gdkmonitor }: { gdkmonitor: Gdk.Monitor }) {
     win.destroy()
   })
 
+  const bindings = createComputed((get) => {
+    let speakerProps: SliderProps = {
+      icon: get(volumeIcon),
+      value: get(volume),
+      setValue: (value) => {
+        wireplumber.defaultSpeaker.set_volume(value)
+      },
+      subItems: []
+    }
+
+    return {
+      speaker: speakerProps,
+    }
+  })
+
   return (
     <window
       name={`menu-section`}
       $={(self) => {
-        // Object.assign(self, { show, hide })
+        Object.assign(self, { show, hide })
         return (win = self)
       }}
+      visible={visible}
       namespace="my-bar"
       gdkmonitor={gdkmonitor}
       exclusivity={Astal.Exclusivity.EXCLUSIVE}
-      anchor={TOP | LEFT | BOTTOM | RIGHT}
+      anchor={TOP | RIGHT}
       application={app}
-      class={"menu"}
+      class={"nobg"}
     >
-      <Adw.Clamp
-        maximum_size={500}
-        heightRequest={500}
+      <revealer
+        transitionType={Gtk.RevealerTransitionType.SLIDE_LEFT}
+        revealChild={reveal}
+        onNotifyChildRevealed={({ childRevealed }) => {
+          setVisible(childRevealed)
+        }}
       >
-        <box class={"test"}>Hello there</box>
-      </Adw.Clamp>
-
+        <With value={bindings}>
+          {(bindings) => (
+            <box
+              spacing={5}
+              orientation={Gtk.Orientation.VERTICAL}
+              class={"nobg"}
+            >
+              <box class={"menu-box"}>
+                <Slider {...bindings.speaker} />
+              </box>
+              <box class={"menu-box"}>Hello there</box>
+            </box>
+          )}
+        </With>
+      </revealer>
     </window>
   )
 }
