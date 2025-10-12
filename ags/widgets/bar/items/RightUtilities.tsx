@@ -141,7 +141,6 @@ export default function RightUtilities() {
       color: !get(isPowered) ? "white" : get(isConnected) ? "aqua" : "green",
       bg: !get(isPowered) ? "white" : get(isConnected) ? "darkblue" : "blue"
     }
-    print({ wireless, battery, bluetooth })
     return {
       wireless,
       battery,

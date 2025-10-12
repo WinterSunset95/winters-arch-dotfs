@@ -204,8 +204,6 @@ function Battery() {
     "percentage",
   )((p) => `${Math.floor(p * 100)}%`)
 
-  print(percent.get())
-
   const setProfile = (profile: string) => {
     powerprofiles.set_active_profile(profile)
   }
@@ -266,7 +264,6 @@ export default function Bar({ gdkmonitor }: { gdkmonitor: Gdk.Monitor }) {
               print("Window not found")
               return
             }
-            print(win)
             if (win.visible) {
               win.hide()
             } else {

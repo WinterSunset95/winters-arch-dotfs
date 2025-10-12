@@ -64,8 +64,8 @@ function setBars(cava: AstalCava.Cava, length: number) {
 function Spotify() {
   let flipStart = true;
   const spotify = AstalMpris.Player.new("spotify")
-  const title = createBinding(spotify, "title")((p) => p.length >= 20 ? p.slice(0, 18) + "..." : p)
-  const artist = createBinding(spotify, "artist")((p) => p.length >= 20 ? p.slice(0, 20) + "..." : p)
+  const title = createBinding(spotify, "title")((p) => p == null ? "" : p.length >= 20 ? p.slice(0, 18) + "..." : p)
+  const artist = createBinding(spotify, "artist")((p) => p == null ? "" : p.length >= 20 ? p.slice(0, 20) + "..." : p)
   const playbackStatus = createBinding(spotify, "playbackStatus")
   const watchlist = createComputed((get) => ({
     artist: get(artist),

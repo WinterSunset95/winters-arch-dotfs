@@ -19,16 +19,15 @@ export default function Menu({ gdkmonitor }: { gdkmonitor: Gdk.Monitor }) {
   const wireplumber = AstalWp.get_default();
   const volume = createBinding(wireplumber.defaultSpeaker, "volume")
   const volumeIcon = createBinding(wireplumber.defaultSpeaker, "volumeIcon")
+  const devices = createBinding(wireplumber, "devices")
 
   function show() {
     setVisible(true)
     setReveal(true)
-    print("Show Clicked")
   }
 
   function hide() {
     setReveal(false)
-    print("Hide Clicked")
   }
 
   onCleanup(() => {
@@ -39,6 +38,13 @@ export default function Menu({ gdkmonitor }: { gdkmonitor: Gdk.Monitor }) {
   })
 
   const bindings = createComputed((get) => {
+    let devicesArr = get(devices)
+    print("")
+    devicesArr.map((device) => {
+      print(device.id)
+    })
+    print("")
+
     let speakerProps: SliderProps = {
       icon: get(volumeIcon),
       value: get(volume),
@@ -69,7 +75,7 @@ export default function Menu({ gdkmonitor }: { gdkmonitor: Gdk.Monitor }) {
       class={"nobg"}
     >
       <revealer
-        transitionType={Gtk.RevealerTransitionType.SLIDE_LEFT}
+        transitionType={Gtk.RevealerTransitionType.SLIDE_DOWN}
         revealChild={reveal}
         onNotifyChildRevealed={({ childRevealed }) => {
           setVisible(childRevealed)
