@@ -7,6 +7,7 @@ import AstalBattery from "gi://AstalBattery?version=0.1"
 import { Gtk } from "ags/gtk4";
 import AstalWp from "gi://AstalWp?version=0.1";
 import Slider, { SliderProps } from "./components/Slider";
+import AstalMpris from "gi://AstalMpris?version=0.1";
 
 export default function Menu({ gdkmonitor }: { gdkmonitor: Gdk.Monitor }) {
   let win: Astal.Window
@@ -20,6 +21,10 @@ export default function Menu({ gdkmonitor }: { gdkmonitor: Gdk.Monitor }) {
   const volume = createBinding(wireplumber.defaultSpeaker, "volume")
   const volumeIcon = createBinding(wireplumber.defaultSpeaker, "volumeIcon")
   const devices = createBinding(wireplumber, "devices")
+
+  // Current players
+  const mpris = AstalMpris.get_default()
+  const players = createBinding(mpris, "players")
 
   function show() {
     setVisible(true)
@@ -39,9 +44,17 @@ export default function Menu({ gdkmonitor }: { gdkmonitor: Gdk.Monitor }) {
 
   const bindings = createComputed((get) => {
     let devicesArr = get(devices)
+    // print("")
+    // devicesArr.map((device) => {
+    //   print(device.id)
+    // })
+    // print("")
+
+    let playersArr = get(players)
+    print("There are " + playersArr.length + " players")
     print("")
-    devicesArr.map((device) => {
-      print(device.id)
+    playersArr.map((player) => {
+      print(player.title)
     })
     print("")
 

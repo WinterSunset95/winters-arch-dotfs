@@ -50,7 +50,7 @@ function Mpris() {
                   orientation={Gtk.Orientation.VERTICAL}
                 >
                   <label xalign={0} label={createBinding(player, "title")} />
-                  <label xalign={0} label={createBinding(player, "artist")} />
+                  <label xalign={0} label={createBinding(player, "artist") ?? ""} />
                 </box>
                 <box hexpand halign={Gtk.Align.END}>
                   <button
