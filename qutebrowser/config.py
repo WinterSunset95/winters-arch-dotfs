@@ -28,8 +28,9 @@ c.url.default_page = "https://www.google.com"
 c.input.insert_mode.auto_load = False
 c.tabs.background = True
 c.url.open_base_url = True
-c.tabs.show = "always"
+c.tabs.show = "multiple"
 c.tabs.position = "right"
+c.content.pdfjs = True
 # Tab area rice
 c.colors.tabs.bar.bg = background_light
 c.colors.tabs.even.bg = background
