@@ -16,5 +16,5 @@ src/
 guake/session.json
 coc/suggest.txt
 guake/session.json
-/scripts
-scripts/
+#/scripts
+#scripts/
