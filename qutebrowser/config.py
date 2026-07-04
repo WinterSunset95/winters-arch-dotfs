@@ -87,6 +87,7 @@ config.bind(';i','config-source i2pconfig.py')
 config.bind(';t','config-source torconfig.py')
 
 c.qt.chromium.process_model = "process-per-site-instance" 
+c.qt.args = ["disable-gpu"]
 # security & privacy settings
 #c.content.webgl = False
 #c.content.dns_prefetch = False

@@ -6,53 +6,96 @@
 
 config_version: 2
 settings:
+  colors.webpage.darkmode.enabled:
+    global: true
+  colors.webpage.darkmode.policy.images:
+    global: never
+  content.desktop_capture:
+    https://discord.com: true
   content.geolocation:
+    global: ask
     https://www.google.com: true
     https://www.naukri.com: true
   content.javascript.clipboard:
+    http://localhost:2283: access-paste
     http://localhost:5050: access-paste
+    http://localhost:7878: access-paste
+    http://localhost:8989: access-paste
+    https://appwrite.io: access-paste
+    https://appwrite.wintersunset95.in: access-paste
     https://auth.firebase.tools: access-paste
     https://aylur.github.io: access-paste
     https://cmp.saghen.dev: access-paste
+    https://connect.raspberrypi.com: access-paste
+    https://console.hetzner.com: access-paste
     https://dash.cloudflare.com: access-paste
     https://docs.claude.com: access-paste
     https://docs.facefusion.io: access-paste
+    https://docs.immich.app: access-paste
     https://drive.google.com: access-paste
     https://emojipedia.org: access-paste
     https://forms.kycaid.com: access-paste
     https://gemini.google.com: access-paste
     https://github.com: access-paste
+    https://immich.wintersunset95.in: access-paste
     https://login.tailscale.com: access-paste
+    https://mhbxyz.github.io: access-paste
     https://nextjs.org: access-paste
     https://ollama.com: access-paste
     https://one.dash.cloudflare.com: access-paste
+    https://streaming.wintersunset95.in: access-paste
+    https://tailscale.com: access-paste
     https://tailwindcss.com: access-paste
     https://ui.shadcn.com: access-paste
+    https://vercel.com: access-paste
     https://windsurf.com: access-paste
+    https://www.vpnbook.com: access-paste
     https://www.whatismyip.com: access-paste
+    https://yazi-rs.github.io: access-paste
   content.media.audio_capture:
+    https://app.kosmi.io: true
+    https://discord.com: true
     https://web.whatsapp.com: true
+  content.media.audio_video_capture:
+    https://studio.youtube.com: true
   content.media.video_capture:
     http://localhost:8100: true
+    https://app.kosmi.io: true
+    https://discord.com: true
     https://examinationservices.nic.in: true
     https://forms.kycaid.com: true
+    https://web.whatsapp.com: true
   content.notifications.enabled:
+    http://localhost:8096: true
+    https://app.kosmi.io: true
     https://claude.ai: true
     https://cleverpush.com: true
     https://crorebet-site.com: true
+    https://demo.jellyfin.org: true
     https://drive.google.com: true
+    https://en.softonic.com: true
+    https://jobalertshub.com: false
     https://lovable.dev: true
     https://mail.google.com: true
     https://meet.google.com: true
+    https://streaming.wintersunset95.in: true
     https://web.whatsapp.com: true
     https://www.bennish.net: true
     https://www.facebook.com: true
     https://www.instagram.com: true
     https://www.netflix.com: true
     https://www.youtube.com: true
+  content.pdfjs:
+    global: false
   content.register_protocol_handler:
     https://calendar.google.com?cid=%25s: true
     https://mail.google.com?extsrc=mailto&url=%25s: true
+  content.tls.certificate_errors:
+    global: load-insecurely
+    https://appwrite.wintersunset95.in/*: load-insecurely
+  qt.args:
+    global:
+    - disable-gpu
   statusbar.show:
     global: always
   tabs.show:

@@ -35,7 +35,7 @@
 
 /* The Currently Selected Entry (CRITICAL) */
 #entry:selected {
-    background-color: aqua;
+    background-color: darkblue;
     color: black; /* Contrast against the aqua */
     font-weight: bold;
 }
