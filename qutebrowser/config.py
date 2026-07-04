@@ -28,7 +28,7 @@ c.url.default_page = "https://www.google.com"
 c.input.insert_mode.auto_load = False
 c.tabs.background = True
 c.url.open_base_url = True
-c.tabs.show = "multiple"
+c.tabs.show = "always"
 c.tabs.position = "right"
 c.content.pdfjs = True
 # Tab area rice
@@ -86,8 +86,12 @@ config.bind(';W','spawn --output-messages yt-dlp -quiet --progress -P ~/media/vi
 config.bind(';i','config-source i2pconfig.py')
 config.bind(';t','config-source torconfig.py')
 
-c.qt.chromium.process_model = "process-per-site-instance" 
-c.qt.args = ["disable-gpu"]
+# Tab bar hide/show
+config.bind("gh", f"config-cycle tabs.show always switching")
+
+c.qt.args = ["ignore-gpu-blocklist", "enable-gpu-rasterization", "enable-native-gpu-memory-buffers"]
+c.qt.chromium.process_model = "process-per-site" 
+
 # security & privacy settings
 #c.content.webgl = False
 #c.content.dns_prefetch = False
@@ -122,6 +126,6 @@ c.content.blocking.adblock.lists = [
     "https://github.com/uBlockOrigin/uAssets/raw/master/filters/unbreak.txt"
 ]
 c.content.blocking.hosts.lists = [
-        "https://theajack.github.io/"
-        ]
+    "https://theajack.github.io/"
+]
 #c.content.blocking.whitelist = ['']

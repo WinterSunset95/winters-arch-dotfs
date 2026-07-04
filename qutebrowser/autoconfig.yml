@@ -94,9 +94,8 @@ settings:
     global: load-insecurely
     https://appwrite.wintersunset95.in/*: load-insecurely
   qt.args:
-    global:
-    - disable-gpu
+    global: []
   statusbar.show:
     global: always
   tabs.show:
-    global: multiple
+    global: switching

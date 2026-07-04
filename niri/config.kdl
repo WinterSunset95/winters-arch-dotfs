@@ -259,6 +259,7 @@ window-rule {
 // Hide beeper
 window-rule {
   match app-id="Beeper"
+  match title="web.whatsapp.com"
   block-out-from "screencast"
 }
 debug {
