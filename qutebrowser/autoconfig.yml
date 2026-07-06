@@ -55,6 +55,7 @@ settings:
   content.media.audio_capture:
     https://app.kosmi.io: true
     https://discord.com: true
+    https://gemini.google.com: true
     https://web.whatsapp.com: true
   content.media.audio_video_capture:
     https://studio.youtube.com: true
