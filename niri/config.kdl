@@ -260,6 +260,7 @@ window-rule {
 window-rule {
   match app-id="Beeper"
   match title="web.whatsapp.com"
+  match app-id="brave-instagram.com__-Default"
   block-out-from "screencast"
 }
 debug {
