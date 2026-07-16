@@ -88,6 +88,8 @@ settings:
     https://www.youtube.com: true
   content.pdfjs:
     global: false
+  content.proxy:
+    global: none
   content.register_protocol_handler:
     https://calendar.google.com?cid=%25s: true
     https://mail.google.com?extsrc=mailto&url=%25s: true
@@ -99,4 +101,4 @@ settings:
   statusbar.show:
     global: always
   tabs.show:
-    global: switching
+    global: always
