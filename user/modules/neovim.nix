@@ -1,51 +1,66 @@
-{ pkgs, ... }: {
-  programs.neovim = {
-    enable = true;
-    defaultEditor = true;
-    viAlias = true;
-    vimAlias = true;
-    extraPackages = with pkgs; [
-      # Typescript
-      nodejs
-      nodePackages.typescript-language-server
-      nodePackages.prettier
+{ pkgs, config, ... }: {
+  home.packages = with pkgs; [
+    neovim
 
-      # Svelte/SvelteKit
-      nodePackages.svelte-language-server
+    # Typescript
+    nodejs
+    typescript-language-server
+    vscode-langservers-extracted
+    tailwindcss-language-server
+    emmet-ls
+    prettier
+    vtsls
 
-      # Python
-      python3
-      pyright
-      black
+    # Svelte/SvelteKit
+    svelte-language-server
 
-      # C/C++
-      gnumake
-      gcc
+    # Python
+    python3
+    pyright
+    black
 
-      # Lua & Nix
-      lua-language-server
-      nil
-      nixpkgs-fmt
-      luarocks
-      lua
+    # C/C++
+    gnumake
+    gcc
+    clang-tools
 
-      # Rust
-      cargo
-      rustc
+    # Lua & Nix
+    lua-language-server
+    nil
+    nixpkgs-fmt
+    luarocks
+    lua
 
-      # Golang 
-      gopls
+    # Rust
+    cargo
+    rustc
+    rust-analyzer
 
-      # LaTeX
-      texlab
-      texliveMedium
+    # Golang 
+    gopls
 
-      # Core Deps
-      ripgrep
-      fd
-      wl-clipboard
-    ];
+    # LaTeX
+    texlab
+    texliveMedium
+    ltex-ls
+
+    # Core Deps
+    ripgrep
+    fd
+    wl-clipboard
+  ];
+
+  home.shellAliases = {
+    vi = "nvim";
+    vim = "nvim";
   };
 
-  xdg.configFile."nvim".source = config.lib.file.mkOutOfStoreSymlink "{config.home.homeDirectory}/winters-arch-dotfs/nvim";
+  # 3. Export the Svelte path globally so Neovim can find it without the wrapper
+  home.sessionVariables = {
+    NIX_SVELTE_PLUGIN_PATH = "${pkgs.svelte-language-server}/lib/node_modules/svelte-language-server/node_modules/typescript-svelte-plugin";
+    EDITOR = "nvim";
+  };
+
+  # 4. Create the pure, unadulterated symlink
+  xdg.configFile."nvim".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/winters-arch-dotfs/nvim";
  }

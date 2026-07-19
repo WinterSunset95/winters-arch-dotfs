@@ -23,7 +23,7 @@
   programs.firefox.enable = true;
 	programs.dank-material-shell.enable = true;
 
-	xdg.configFile."niri".source = ../niri;
+  xdg.configFile."niri".source = config.lib.file.mkOutOfStoreSymlink "{config.home.homeDirectory}/winters-arch-dotfs/niri";
 
 	home.stateVersion = "26.05";
 }
