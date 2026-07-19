@@ -1,4 +1,9 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, inputs, ... }: {
+  imports = [
+    ./modules/qutebrowser.nix
+    ./modules/neovim.nix
+    inputs.dms.homeModules.dank-material-shell
+  ];
 	home.username = "autumn";
 	home.homeDirectory = "/home/autumn";
 
@@ -6,11 +11,11 @@
 	programs.dank-material-shell.enable = true;
 	programs.kitty.enable = true;
 	programs.tmux.enable = true;
-	programs.neovim.enable = true;
+  programs.firefox.enable = true;
 
 	xdg.configFile."niri".source = ./niri;
 	xdg.configFile."tmux".source = ./tmux;
-	xdg.configFile."nvim".source = ./nvim;
+
 	home.stateVersion = "24.05";
 }
 
