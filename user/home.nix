@@ -4,17 +4,29 @@
     ./modules/neovim.nix
     ./modules/tmux.nix
     ./modules/discord.nix
-    ./modules/zoxide.nix
-    ./modules/gh.nix
+    ./modules/shell_tools.nix
     ./modules/zsh.nix
     ./modules/theme.nix
     ./modules/kitty.nix
+    ./modules/media.nix
+    ./modules/email.nix
   ];
+
+  programs.gpg.enable = true;
+  services.gpg-agent = {
+    enable = true;
+    pinentry = { 
+      package = pkgs.pinentry-curses;
+    };
+  };
 
 	home.username = "autumn";
 	home.homeDirectory = "/home/autumn";
   home.packages  = with pkgs; [
     beeper
+    (pass.withExtensions (exts: [ exts.pass-otp ]))
+    pass-secret-service
+    keepassxc
   ];
 
 
