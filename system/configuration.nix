@@ -8,6 +8,8 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./modules/thunar.nix
+      ./modules/bluetooth.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -72,7 +74,6 @@
   # services.printing.enable = true;
 
   # Enable sound.
-  # OR
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -80,11 +81,6 @@
     # alsa.support32bit = true;
     pulse.enable = true;
   };
-
-  # Bluetooth
-  hardware.bluetooth.enable = true;
-  hardware.bluetooth.powerOnBoot = true;
-  services.blueman.enable = true;
 
   # Enable touchpad support (enabled default in most desktopManager).
   services.libinput.enable = true;
@@ -104,10 +100,12 @@
   programs.fish.enable = true;
   programs.bash.enable = true;
   programs.niri.enable = true;
-  programs.thunar.enable = true;
+  programs.xfconf.enable = true;
   security.polkit.enable = true;
   services.gnome.gnome-keyring.enable = true;
   services.xserver.windowManager.awesome.enable = true;
+  services.gvfs.enable = true;
+  services.tumbler.enable = true;
 
   # List packages installed in system profile.
   # You can use https://search.nixos.org/ to find more packages (and options).
