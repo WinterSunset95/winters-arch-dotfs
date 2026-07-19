@@ -8,6 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./modules/zsh.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -92,16 +93,19 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.autumn = {
     isNormalUser = true;
-    description = "The main root user";
     extraGroups = [ "wheel" "networkmanager" ]; # Enable ‘sudo’ for the user.
     home = "/home/autumn";
-    shell = pkgs.bash;
+    shell = pkgs.zsh;
     packages = with pkgs; [
       tree
     ];
   };
 
+  programs.zsh.enable = true;
+  programs.fish.enable = true;
+  programs.bash.enable = true;
   programs.niri.enable = true;
+  programs.thunar.enable = true;
   security.polkit.enable = true;
   services.gnome.gnome-keyring.enable = true;
   services.xserver.windowManager.awesome.enable = true;

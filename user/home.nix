@@ -4,6 +4,8 @@
     ./modules/neovim.nix
     ./modules/tmux.nix
     ./modules/discord.nix
+    ./modules/zoxide.nix
+    ./modules/gh.nix
   ];
 
 	home.username = "autumn";
@@ -16,11 +18,7 @@
 	programs.home-manager.enable = true;
 	programs.kitty.enable = true;
   programs.firefox.enable = true;
-  programs.thunar.enable = true;
-
-	programs.dank-material-shell = {
-    enable = true;
-  };
+	programs.dank-material-shell.enable = true;
 
 	xdg.configFile."niri".source = ../niri;
 

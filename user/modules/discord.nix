@@ -14,13 +14,13 @@
       ];
       
       plugins = {
-        hideAttachments.enable = true;
+        hideMedia.enable = true;
         messageLogger.enable = true; # Keeps deleted messages visible locally
         typingTweaks.enable = true;
         voiceChatDoubleClick.enable = true;
         webKeybinds.enable = true;
         alwaysTrust.enable = true;
-        clearURLs.enable = true; # Strips tracking parameters from links
+        clearUrls.enable = true; # Strips tracking parameters from links
       };
     };
   };
