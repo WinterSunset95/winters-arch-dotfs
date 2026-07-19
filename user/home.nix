@@ -2,20 +2,28 @@
   imports = [
     ./modules/qutebrowser.nix
     ./modules/neovim.nix
-    inputs.dms.homeModules.dank-material-shell
+    ./modules/tmux.nix
+    ./modules/discord.nix
   ];
+
 	home.username = "autumn";
 	home.homeDirectory = "/home/autumn";
+  home.packages  = with pkgs; [
+    beeper
+  ];
+
 
 	programs.home-manager.enable = true;
-	programs.dank-material-shell.enable = true;
 	programs.kitty.enable = true;
-	programs.tmux.enable = true;
   programs.firefox.enable = true;
+  programs.thunar.enable = true;
 
-	xdg.configFile."niri".source = ./niri;
-	xdg.configFile."tmux".source = ./tmux;
+	programs.dank-material-shell = {
+    enable = true;
+  };
 
-	home.stateVersion = "24.05";
+	xdg.configFile."niri".source = ../niri;
+
+	home.stateVersion = "26.05";
 }
 

@@ -1,3 +1,5 @@
+spawn-at-startup "dms" "run"
+
 workspace "control"
 workspace "browser"
 workspace "chat"

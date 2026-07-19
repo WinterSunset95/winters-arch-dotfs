@@ -22,6 +22,8 @@
 
   networking.hostName = "trix"; # Define your hostname.
 
+  nixpkgs.config.allowUnfree = true;
+
   # Flakes
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
@@ -51,7 +53,20 @@
 
   # Configure keymap in X11
   services.xserver.xkb.layout = "us";
-  services.xserver.xkb.options = "eurosign:e,caps:escape";
+  # services.xserver.xkb.options = "eurosign:e,caps:escape";
+  services.keyd = {
+    enable = true;
+    keyboards  = {
+      default = {
+        ids = [ "*" ];
+        settings = {
+          main = {
+            capslock = "overload(control, esc)";
+          };
+        };
+      };
+    };
+  };
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;

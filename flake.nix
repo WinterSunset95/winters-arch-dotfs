@@ -12,8 +12,11 @@
       url = "github:AvengeMedia/DankMaterialShell/stable"; 
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixcord = {
+      url = "github:kaylorben/nixcord";
+    };
 	};
-	outputs = { self, nixpkgs, home-manager, dms, ... }@inputs: {
+	outputs = { self, nixpkgs, home-manager, dms, nixcord, ... }@inputs: {
 		nixosConfigurations."trix"  = nixpkgs.lib.nixosSystem {
 			system = "x86_64-linux";
       specialArgs = { inherit inputs; };
@@ -23,12 +26,13 @@
 			];
 		};
 
-    nixosConfigurations."autumn" = home-manager.lib.homeManagerConfiguration {
+    homeConfigurations."autumn" = home-manager.lib.homeManagerConfiguration {
 			pkgs = nixpkgs.legacyPackages.x86_64-linux;
-      specialArgs = { inherit inputs; };
+      extraSpecialArgs = { inherit inputs; };
       modules = [
         ./user/home.nix
         dms.homeModules.dank-material-shell
+        nixcord.homeManagerModules.nixcord
       ];
     };
 		
