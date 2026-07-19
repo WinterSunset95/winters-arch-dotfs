@@ -6,6 +6,7 @@
     ./modules/discord.nix
     ./modules/zoxide.nix
     ./modules/gh.nix
+    ./modules/zsh.nix
   ];
 
 	home.username = "autumn";
