@@ -35,10 +35,16 @@
 
   # 3. The Wayland Cursor Trap
   home.pointerCursor = {
+    enable = true;
     name = "catppuccin-mocha-mauve-cursors";
     package = pkgs.catppuccin-cursors.mochaMauve;
-    size = 24;
+    size = 20;
     gtk.enable = true;
     x11.enable = true; # Required for XWayland fallback apps
+  };
+
+  home.sessionVariables = {
+    XCURSOR_THEME = "catppuccin-mocha-mauve-cursors";
+    XCURSOR_SIZE = 20;
   };
 }

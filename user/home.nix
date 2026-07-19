@@ -7,6 +7,8 @@
     ./modules/zoxide.nix
     ./modules/gh.nix
     ./modules/zsh.nix
+    ./modules/theme.nix
+    ./modules/kitty.nix
   ];
 
 	home.username = "autumn";

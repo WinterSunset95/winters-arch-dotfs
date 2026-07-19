@@ -167,6 +167,8 @@ overview {
 // This line starts waybar, a commonly used bar for Wayland compositors.
 environment {
   XDG_CURRENT_DESKTOP "niri"
+  XCURSOR_THEME "catppuccin-mocha-mauve-cursors"
+  XCURSOR_SIZE "20"
 }
 hotkey-overlay {
     skip-at-startup
