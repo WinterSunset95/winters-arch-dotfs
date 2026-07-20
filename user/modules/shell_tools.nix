@@ -3,6 +3,7 @@
     ncdu
     tldr
     unzip
+    btop
   ];
 
   programs.yazi = {

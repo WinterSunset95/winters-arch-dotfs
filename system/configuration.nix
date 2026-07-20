@@ -6,32 +6,22 @@
 
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [
       ./hardware-configuration.nix
-      ./modules/thunar.nix
+      ./modules/bootloader.nix
       ./modules/bluetooth.nix
       ./modules/login_manager.nix
+      ./modules/networking.nix
+      ./modules/multimedia.nix
+      ./modules/performance.nix
+      ./modules/gaming.nix
     ];
 
-  # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = false;
-  boot.loader.grub.enable = true;
-  boot.loader.grub.efiSupport = true;
-  boot.loader.grub.device = "nodev";
-  boot.loader.efi.canTouchEfiVariables = true;
-
-  # Use latest kernel.
-  boot.kernelPackages = pkgs.linuxPackages_latest;
-
-  networking.hostName = "trix"; # Define your hostname.
 
   nixpkgs.config.allowUnfree = true;
 
   # Flakes
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
-  # Configure network connections interactively with nmcli or nmtui.
-  networking.networkmanager.enable = true;
 
   # Set your time zone.
   time.timeZone = "Asia/Calcutta";
@@ -98,7 +88,10 @@
   programs.bash.enable = true;
   programs.niri.enable = true;
   programs.xfconf.enable = true;
+  programs.dconf.enable = true;
+
   security.polkit.enable = true;
+
   services.gnome.gnome-keyring.enable = true;
   services.xserver.windowManager.awesome.enable = true;
   services.gvfs.enable = true;

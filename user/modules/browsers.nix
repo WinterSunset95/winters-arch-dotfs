@@ -70,4 +70,7 @@
       c.qt.args = ["ignore-gpu-blocklist", "enable-gpu-rasterization", "enable-native-gpu-memory-buffers"];
     '';
   };
+  programs.firefox = {
+    enable = true; 
+  };
 }

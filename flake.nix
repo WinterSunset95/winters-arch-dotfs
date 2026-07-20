@@ -15,8 +15,9 @@
     nixcord = {
       url = "github:kaylorben/nixcord";
     };
+    catppuccin.url = "github:catppuccin/nix";
 	};
-	outputs = { self, nixpkgs, home-manager, dms, nixcord, ... }@inputs: {
+	outputs = { self, nixpkgs, home-manager, dms, nixcord, catppuccin, ... }@inputs: {
 		nixosConfigurations."trix"  = nixpkgs.lib.nixosSystem {
 			system = "x86_64-linux";
       specialArgs = { inherit inputs; };
@@ -36,6 +37,7 @@
         ./user/home.nix
         dms.homeModules.dank-material-shell
         nixcord.homeModules.nixcord
+        catppuccin.homeModules.catppuccin
       ];
     };
 		
