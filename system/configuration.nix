@@ -10,6 +10,7 @@
       ./hardware-configuration.nix
       ./modules/thunar.nix
       ./modules/bluetooth.nix
+      ./modules/login_manager.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -47,11 +48,7 @@
   #   useXkbConfig = true; # use xkb.options in tty.
   # };
 
-  # Enable the X11 windowing system.
-  services.displayManager.sddm.enable = true;
-  services.displayManager.sddm.wayland.enable = true;
   services.xserver.enable = true;
-  
 
   # Configure keymap in X11
   services.xserver.xkb.layout = "us";
@@ -114,6 +111,7 @@
     git
     wget
     obs-studio
+    sddm-astronaut
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
