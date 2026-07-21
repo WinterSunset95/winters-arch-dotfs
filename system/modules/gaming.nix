@@ -1,6 +1,5 @@
 { pkgs, config, ... }: {
 
-  hardware.opengl.enable = true;
   hardware.graphics.enable = true;
   programs.gamemode.enable = true;
   programs.gamescope = {

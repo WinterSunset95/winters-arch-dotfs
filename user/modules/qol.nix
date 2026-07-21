@@ -15,4 +15,8 @@
 
     xwayland-satellite
   ];
+
+  programs.zathura = {
+    enable = true;
+  };
 }

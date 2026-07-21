@@ -15,6 +15,7 @@
       ./modules/multimedia.nix
       ./modules/performance.nix
       ./modules/gaming.nix
+      ./modules/immich.nix
     ];
 
 
@@ -75,7 +76,7 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.autumn = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "networkmanager" "video" "render" "kvm" ];
     home = "/home/autumn";
     shell = pkgs.zsh;
     packages = with pkgs; [
@@ -97,6 +98,7 @@
   services.gvfs.enable = true;
   services.tumbler.enable = true;
 
+
   # List packages installed in system profile.
   # You can use https://search.nixos.org/ to find more packages (and options).
   environment.systemPackages = with pkgs; [
@@ -105,6 +107,7 @@
     wget
     obs-studio
     sddm-astronaut
+    android-tools
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

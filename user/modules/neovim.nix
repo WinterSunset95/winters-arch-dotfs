@@ -23,6 +23,7 @@
     gnumake
     gcc
     clang-tools
+    tree-sitter
 
     # Lua & Nix
     lua-language-server

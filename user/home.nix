@@ -34,13 +34,18 @@
 
     spotify
     spotify-player
-    android-studio
   ];
 
 
 	programs.home-manager.enable = true;
 	programs.kitty.enable = true;
 	programs.dank-material-shell.enable = true;
+  programs.direnv = {
+    enable = true;
+    enableBashIntegration = true;
+    enableZshIntegration = true;
+    nix-direnv.enable = true;
+  };
 
   catppuccin = {
     enable = true;
