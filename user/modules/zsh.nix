@@ -22,7 +22,6 @@
       enable = true;
       plugins = [
         "git"
-        "z"
         "docker"
         "sudo"
       ];

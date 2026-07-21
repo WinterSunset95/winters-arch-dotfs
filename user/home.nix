@@ -12,25 +12,16 @@
     ./modules/email.nix
     ./modules/qol.nix
     ./modules/minecraft.nix
+    ./modules/auth.nix
+    ./modules/ai_tools.nix
   ];
 
   nixpkgs.config.allowUnfree = true;
-
-  programs.gpg.enable = true;
-  services.gpg-agent = {
-    enable = true;
-    pinentry = { 
-      package = pkgs.pinentry-curses;
-    };
-  };
 
 	home.username = "autumn";
 	home.homeDirectory = "/home/autumn";
   home.packages  = with pkgs; [
     beeper
-    (pass.withExtensions (exts: [ exts.pass-otp ]))
-    pass-secret-service
-    keepassxc
 
     spotify
     spotify-player
@@ -38,7 +29,6 @@
 
 
 	programs.home-manager.enable = true;
-	programs.kitty.enable = true;
 	programs.dank-material-shell.enable = true;
   programs.direnv = {
     enable = true;
@@ -56,6 +46,7 @@
   };
 
   xdg.configFile."niri".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/winters-arch-dotfs/niri";
+  xdg.configFile."awesome".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/winters-arch-dotfs/somewm";
 
 	home.stateVersion = "26.05";
 }

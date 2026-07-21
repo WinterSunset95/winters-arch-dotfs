@@ -5,11 +5,6 @@
 
   services.imapnotify.enable = true;
 
-  services.mbsync = {
-    enable = true;
-    frequency = "*:0/15";
-  };
-
   accounts.email.accounts = { 
     wintersunset95 = {
       primary = true;
